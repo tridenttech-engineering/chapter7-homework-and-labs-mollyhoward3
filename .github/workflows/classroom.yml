@@ -1,0 +1,98 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: lab7-1
+      id: lab7-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: lab7-1
+        setup-command: ''
+        command: make clean && make test_lab7-1 && make lab7-1 && ./test_files/test_lab7-1
+        input: ''
+        expected-output: Test passed!
+        comparison-method: contains
+        timeout: 10
+        max-score: 1      
+    - name: lab7-2
+      id: lab7-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: lab7-2
+        setup-command: ''
+        command: make clean && make test_lab7-2 && make lab7-2 && ./test_files/test_lab7-2
+        input: ''
+        expected-output: Test passed!
+        comparison-method: contains
+        timeout: 10
+        max-score: 1      
+    - name: lab7-3
+      id: lab7-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: lab7-3
+        setup-command: ''
+        command: make clean && make test_lab7-3 && make lab7-3 && ./test_files/test_lab7-3
+        input: ''
+        expected-output: Test passed!
+        comparison-method: contains
+        timeout: 10
+        max-score: 1      
+    - name: lab7-4
+      id: lab7-4
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: lab7-4
+        setup-command: ''
+        command: make clean && make test_lab7-4 && make lab7-4 && ./test_files/test_lab7-4
+        input: ''
+        expected-output: Test passed!
+        comparison-method: contains
+        timeout: 10
+        max-score: 1      
+    - name: lab7-6
+      id: lab7-6
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: lab7-6
+        setup-command: ''
+        command: make clean && make test_lab7-6 && make lab7-6 && ./test_files/test_lab7-6
+        input: ''
+        expected-output: Test passed!
+        comparison-method: contains
+        timeout: 10
+        max-score: 1      
+    - name: hw7-16
+      id: hw7-16
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: hw7-16
+        setup-command: ''
+        command: make clean && make test_hw7-16 && make hw7-16 && ./test_files/test_hw7-16
+        input: ''
+        expected-output: Test passed!
+        comparison-method: contains
+        timeout: 10
+        max-score: 1      
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        LAB7-1_RESULTS: "${{steps.lab7-1.outputs.result}}"
+        LAB7-2_RESULTS: "${{steps.lab7-2.outputs.result}}"
+        LAB7-3_RESULTS: "${{steps.lab7-3.outputs.result}}"
+        LAB7-4_RESULTS: "${{steps.lab7-4.outputs.result}}"
+        LAB7-6_RESULTS: "${{steps.lab7-6.outputs.result}}"
+        HW7-16_RESULTS: "${{steps.hw7-16.outputs.result}}"
+      with:
+        runners: lab7-1,lab7-2,lab7-3,lab7-4,lab7-6,hw7-16
