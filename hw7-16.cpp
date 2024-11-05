@@ -1,5 +1,5 @@
 //hw7-16.cpp - displays three tip amounts
-//Created/revised by <your name> on <current date>
+//Created/revised by <Molly Howard> on <11/5/24>
 
 #include <iostream>
 #include <iomanip>
