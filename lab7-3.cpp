@@ -13,13 +13,14 @@ int main()
     int dailyTexts = 0;
     double average = 0.0;
 
-    for (day =1; day < 8; day += 1)
+    day = 1;
+    while (day < 8)
         {
             cout << "How many texts messages did you send on day " << day << "? ";
             cin >> dailyTexts;
             totalTexts += dailyTexts;
             
-        }     //end for
+        }     //end while
     average = static_cast<double>(totalTexts) / (day-1);
     cout << fixed << setprecision(0);
     cout << endl << "You sent approximately " << average << "text messages per day." << endl;
